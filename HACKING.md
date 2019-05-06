@@ -483,9 +483,15 @@ before:
 
     make install-bin test
 
-To run `Ghci`:
+To run `ghci`:
 
     stack repl
+
+Or, if you want to carefully set consistent GHC flags:
+
+    stack repl --ghci-options -ghci-script=.ghci860 --no-load Agda:lib
+
+Replace `.ghci860` with the appropriate version.
 
 Closed issues by milestone program
 ==================================
