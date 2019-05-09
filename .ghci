@@ -45,3 +45,26 @@
 :}
 :agda_load_local_ghci
 :undef agda_load_local_ghci
+
+:{
+:def agda_set_include_dirs \varcmd -> do
+  -- Note that Cabal doesn't set this by default, but
+  -- Stack does.
+  -- https://github.com/haskell/cabal/issues/3483
+  distDirMaybe <- System.Environment.lookupEnv "HASKELL_DIST_DIR"
+  cwd <- System.Directory.getCurrentDirectory
+  return $ flip (maybe "") distDirMaybe (\distDir -> let
+      buildDir = System.FilePath.joinPath [cwd, distDir, "build"]
+      autogenDir = System.FilePath.joinPath [cwd, buildDir, "autogen"]
+      macrosPath = System.FilePath.joinPath [cwd, autogenDir, "cabal_macros.h"]
+    in unlines
+      [ ":set -i" ++ autogenDir
+      , ":set -i" ++ buildDir
+      , ":set -I" ++ autogenDir
+      , ":set -I" ++ buildDir
+      , ":set -optP-include"
+      , ":set -optP" ++ macrosPath
+      ])
+:}
+:agda_set_include_dirs
+:undef agda_set_include_dirs
