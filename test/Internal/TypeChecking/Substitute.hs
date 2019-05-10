@@ -338,7 +338,7 @@ prop_prependS delta =
 
 prop_parallelS :: Cx -> Cx -> Property
 prop_parallelS gamma delta =
-  forAllShrink (mapM (genTm gamma) (map snd $ contextVars delta)) (traverse shrink) $ \ vs ->
+  forAllShrink (mapM ((genTm gamma) . snd) contextVars delta) (traverse shrink) $ \ vs ->
   checkSub gamma (parallelS vs) (gamma <> delta)
 
 ------------------------------------------------------------------------

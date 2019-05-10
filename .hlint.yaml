@@ -12,7 +12,6 @@
 - ignore: {name: "Eta reduce"}
 - ignore: {name: "Evaluate"}
 - ignore: {name: "Fuse foldr/map"}
-- ignore: {name: "Fuse mapM/map"}
 - ignore: {name: "Hoist not"}
 - ignore: {name: "Move brackets to avoid $"}
 - ignore: {name: "Reduce duplication"}
