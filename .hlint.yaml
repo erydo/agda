@@ -57,7 +57,7 @@
 - ignore: {name: "Use record patterns"}
 - ignore: {name: "Use second"}
 - ignore: {name: "Use section"}
-- ignore: {name: "Use sequenceA"}
+# - ignore: {name: "Use sequenceA"}
 - ignore: {name: "Use ||"}
 
 
